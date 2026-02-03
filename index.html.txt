@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Essentiel pour le mobile -->
+    <title>Ma Proposition de Valentine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient(to bottom, #ffe6f2, #ffb3d9);
+            color: #d63384;
+            padding: 20px; /* Réduit pour mobile */
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2.5em; /* Plus petit sur mobile */
+        }
+        p {
+            font-size: 1.2em;
+        }
+        ul {
+            font-size: 1em;
+        }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 25px; /* Boutons plus petits */
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+        #maybeButton {
+            position: absolute;
+        }
+        .heart {
+            width: 150px; /* Plus petit sur mobile */
+            height: 150px;
+            margin: 20px;
+            fill: #ff69b4;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        #customMessage {
+            font-size: 1em;
+            margin-top: 20px;
+            display: none;
+        }
+        /* Media queries pour mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Encore moins de padding */
+            }
+            h1 {
+                font-size: 2em; /* Titre plus petit */
+            }
+            p, ul {
+                font-size: 1em; /* Texte ajusté */
+            }
+            button {
+                padding: 10px 20px; /* Boutons compacts */
+                font-size: 0.9em;
+            }
+            .heart {
+                width: 120px; /* Cœur encore plus petit */
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Veux-tu être ma Valentine ?</h1>
+    <p>Ma chérie, tu es la lumière de ma vie. Voici quelques raisons pour lesquelles je t'aime :</p>
+    <ul style="list-style: none;">
+        <li>❤️ Ton sourire illumine mes journées.</li>
+        <li>❤️ Tes rires rendent tout plus beau.</li>
+        <li>❤️ Tu es ma meilleure amie et mon amour éternel.</li>
+    </ul>
+    <svg class="heart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <br>
+    <button onclick="alert('Oui ! Je t\'aime plus que tout !')">Oui, bien sûr !</button>
+    <button id="maybeButton" onclick="moveButton()">Peut-être</button>
+    <p id="customMessage">Allez, dis oui ! Tu sais que c'est le bon choix. 😘</p>
+
+    <audio id="bgMusic" loop>
+        <source src="ta-chanson-romantique.mp3" type="audio/mpeg">
+        Ton navigateur ne supporte pas l'audio.
+    </audio>
+
+    <script>
+        let clickCount = 0;
+        function moveButton() {
+            clickCount++;
+            const button = document.getElementById('maybeButton');
+            const maxX = window.innerWidth - button.offsetWidth;
+            const maxY = window.innerHeight - button.offsetHeight;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+            if (clickCount >= 3) {
+                document.getElementById('customMessage').style.display = 'block';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('bgMusic').play();
+        });
+    </script>
+</body>
+</html>
